@@ -498,7 +498,7 @@ function handlePostLead($pdo) {
             ':original_message' => $message,
             ':notes' => trim($input['notes'] ?? $input['note'] ?? ''),
             ':lead_status' => $status,
-            ':status' => $status,
+            ':status' => substr($status, 0, 20),
             ':entry_source' => 'manual',
             ':country' => trim($input['country'] ?? $input['location'] ?? ''),
             ':location' => trim($input['location'] ?? $input['country'] ?? ''),

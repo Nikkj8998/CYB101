@@ -483,6 +483,10 @@ function updateLead($pdo) {
             // Special handling for is_junk (boolean/integer)
             if ($dbColumn === 'is_junk') {
                 $params[$paramKey] = ($value === true || $value === 1 || $value === '1' || $value === 'true') ? 1 : 0;
+            } elseif ($dbColumn === 'status' || $dbColumn === 'lead_status') {
+                // Truncate to avoid "Data too long" errors
+                $maxLength = ($dbColumn === 'status') ? 20 : 100;
+                $params[$paramKey] = substr((string)$value, 0, $maxLength);
             } else {
                 $params[$paramKey] = ($value === '' || $value === null) ? null : $value;
             }
@@ -576,6 +580,10 @@ function createLead($pdo) {
                 // Special handling for is_junk (boolean/integer)
                 if ($field === 'is_junk') {
                     $params[$paramKey] = ($value === true || $value === 1 || $value === '1' || $value === 'true') ? 1 : 0;
+                } elseif ($field === 'status') {
+                    $params[$paramKey] = substr((string)$value, 0, 20);
+                } elseif ($field === 'lead_status') {
+                    $params[$paramKey] = substr((string)$value, 0, 100);
                 } else {
                     $params[$paramKey] = ($value === '' || $value === null) ? null : $value;
                 }
@@ -598,7 +606,15 @@ function createLead($pdo) {
             $paramKey = ":def_$field";
             $columns[] = $field;
             $placeholders[] = $paramKey;
-            $params[$paramKey] = $val;
+            
+            // Truncate if necessary
+            if ($field === 'status') {
+                $params[$paramKey] = substr((string)$val, 0, 20);
+            } elseif ($field === 'lead_status') {
+                $params[$paramKey] = substr((string)$val, 0, 100);
+            } else {
+                $params[$paramKey] = $val;
+            }
         }
     }
 
