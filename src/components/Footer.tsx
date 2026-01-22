@@ -2,8 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SocialIcons } from "@/components/SocialIcons";
 
-
-
 const Footer = () => (
   <footer className="bg-white text-gray-900 py-8 md:py-10 border-t border-gray-200">
     <div className="container max-w-7xl mx-auto mobile-padding">
@@ -13,7 +11,7 @@ const Footer = () => (
         <div className="sm:col-span-2 lg:col-span-1">
           <div className="flex items-center space-x-2 mb-4">
             <img
-              src="/images/logo.png"
+              src="uploads/01_CYBAEM TECH Logo 2026 PNG 1.png"
               alt="CybaemTech Logo"
               className="h-12 md:h-14 w-auto object-contain"
             />
