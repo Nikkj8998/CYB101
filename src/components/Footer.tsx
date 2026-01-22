@@ -26,11 +26,11 @@ const Footer = () => (
           <div className="flex space-x-4">
             <Button
               size="sm"
-              variant="outline"
+              variant="default"
               onClick={() =>
                 (window.location.href = "/contact?source=footer-cta")
               }
-              className="bg-[#14539a] text-white border-[#14539a] hover:bg-[#14539a]/90 transition-all duration-300 touch-target"
+              className="text-xs md:text-sm font-medium bg-[#14539a] hover:bg-[#14539a]/90 text-white px-3 py-2"
             >
               Contact Us
             </Button>
