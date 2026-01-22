@@ -374,9 +374,9 @@ const Header = () => {
           className="flex items-center space-x-2 touch-target"
         >
           <img
-            src="/uploads/77cb2418-56bd-44ad-8bfd-3651e3cdb2c0.png"
+            src="/images/logo.png"
             alt="CybaemTech Logo"
-            className="h-12 md:h-16 w-auto"
+            className="h-10 md:h-12 w-auto object-contain"
           />
         </Link>
 

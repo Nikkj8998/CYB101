@@ -13,9 +13,9 @@ const Footer = () => (
         <div className="sm:col-span-2 lg:col-span-1">
           <div className="flex items-center space-x-2 mb-4">
             <img
-              src="/uploads/footerlogo.webp"
+              src="/images/logo.png"
               alt="CybaemTech Logo"
-              className="h-40 md:h-16 w-auto"
+              className="h-12 md:h-14 w-auto object-contain brightness-0 invert"
             />
           </div>
           <p className="text-white/80 text-sm leading-relaxed mb-4">

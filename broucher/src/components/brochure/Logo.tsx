@@ -14,7 +14,7 @@ const Logo = ({ variant = "default", className = "", size = "md" }: LogoProps) =
   return (
     <div className={`flex items-center ${className}`}>
       <img 
-        src={`${import.meta.env.BASE_URL}logo.png`}
+        src="/images/logo.png"
         alt="Cybaem Tech - Beyond Limits" 
         className={`${sizeClasses[size]} w-auto object-contain ${
           variant === "light" ? "brightness-0 invert" : ""
