@@ -30,7 +30,7 @@ const Footer = () => (
               onClick={() =>
                 (window.location.href = "/contact?source=footer-cta")
               }
-              className="bg-primary text-white border-primary hover:bg-primary/90 transition-all duration-300 touch-target"
+              className="bg-[#14539a] text-white border-[#14539a] hover:bg-[#14539a]/90 transition-all duration-300 touch-target"
             >
               Contact Us
             </Button>
@@ -54,7 +54,7 @@ const Footer = () => (
               <li key={path}>
                 <a
                   href={`/${path}`}
-                  className="text-gray-600 hover:text-primary text-sm transition-colors block py-0.5"
+                  className="text-gray-600 hover:text-[#14539a] text-sm transition-colors block py-0.5"
                 >
                   {path
                     .replace(/-/g, " ")
@@ -103,7 +103,7 @@ const Footer = () => (
               <li key={path}>
                 <a
                   href={`/${path}`}
-                  className="text-gray-600 hover:text-primary text-sm transition-colors block py-0.5"
+                  className="text-gray-600 hover:text-[#14539a] text-sm transition-colors block py-0.5"
                 >
                   {path
                     .replace(/-/g, " ")
