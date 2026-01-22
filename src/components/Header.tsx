@@ -463,7 +463,7 @@ const Header = () => {
                               const serviceName = typeof service === 'string' ? service : service.name;
                               const serviceHash = typeof service === 'string' 
                                 ? service.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
-                                : service.hash;
+                                : (service as any).hash;
                               return (
                                 <Link
                                   key={index}
@@ -486,7 +486,7 @@ const Header = () => {
                               const serviceName = typeof service === 'string' ? service : service.name;
                               const serviceHash = typeof service === 'string' 
                                 ? service.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
-                                : service.hash;
+                                : (service as any).hash;
                               return (
                                 <Link
                                   key={index}
@@ -509,7 +509,7 @@ const Header = () => {
                               const serviceName = typeof service === 'string' ? service : service.name;
                               const serviceHash = typeof service === 'string' 
                                 ? service.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
-                                : service.hash;
+                                : (service as any).hash;
                               return (
                                 <Link
                                   key={index}
@@ -525,22 +525,28 @@ const Header = () => {
                         </div>
                       </div>
                     ) : activeCategory.twoColumnServices ? (
-                      <div className="grid grid-cols-2 gap-5">
+                      <div className="grid grid-cols-2 gap-4">
                         <div>
                           <h4 className="text-xs font-semibold text-gray-800 mb-2">
                             {activeCategory.twoColumnServices.column1.title}
                           </h4>
                           <div className="space-y-1">
-                            {activeCategory.twoColumnServices.column1.items.map((service, index) => (
-                              <Link
-                                key={index}
-                                to={`${activeCategory.path}#${service.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}
-                                onClick={handleMenuItemClick}
-                                className="block text-xs text-gray-600 hover:text-primary hover:bg-gray-100 transition-colors py-1.5 px-2 rounded-md"
-                              >
-                                {service}
-                              </Link>
-                            ))}
+                            {activeCategory.twoColumnServices.column1.items.map((service, index) => {
+                              const serviceName = typeof service === 'string' ? service : service.name;
+                              const serviceHash = typeof service === 'string' 
+                                ? service.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+                                : (service as any).hash;
+                              return (
+                                <Link
+                                  key={index}
+                                  to={`${activeCategory.path}#${serviceHash}`}
+                                  onClick={handleMenuItemClick}
+                                  className="block text-xs text-gray-600 hover:text-[#14539a] hover:bg-gray-100 transition-colors py-1.5 px-2 rounded-md"
+                                >
+                                  {serviceName}
+                                </Link>
+                              );
+                            })}
                           </div>
                         </div>
                         <div>
@@ -548,141 +554,93 @@ const Header = () => {
                             {activeCategory.twoColumnServices.column2.title}
                           </h4>
                           <div className="space-y-1">
-                            {activeCategory.twoColumnServices.column2.items.map((service, index) => (
-                              <Link
-                                key={index}
-                                to={`${activeCategory.path}#${service.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`}
-                                onClick={handleMenuItemClick}
-                                className="block text-xs text-gray-600 hover:text-primary hover:bg-gray-100 transition-colors py-1.5 px-2 rounded-md"
-                              >
-                                {service}
-                              </Link>
-                            ))}
+                            {activeCategory.twoColumnServices.column2.items.map((service, index) => {
+                              const serviceName = typeof service === 'string' ? service : service.name;
+                              const serviceHash = typeof service === 'string' 
+                                ? service.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')
+                                : (service as any).hash;
+                              return (
+                                <Link
+                                  key={index}
+                                  to={`${activeCategory.path}#${serviceHash}`}
+                                  onClick={handleMenuItemClick}
+                                  className="block text-xs text-gray-600 hover:text-[#14539a] hover:bg-gray-100 transition-colors py-1.5 px-2 rounded-md"
+                                >
+                                  {serviceName}
+                                </Link>
+                              );
+                            })}
                           </div>
                         </div>
                       </div>
                     ) : (
-                      <div className="grid grid-cols-2 gap-x-4 gap-y-1">
-                        {activeCategory.services.map((service, index) => {
-                          const serviceName = typeof service === 'string' ? service : service.name;
-                          const serviceHash = typeof service === 'string' ? '' : `#${service.hash}`;
-                          return (
-                            <Link
-                              key={index}
-                              to={`${activeCategory.path}${serviceHash}`}
-                              onClick={handleMenuItemClick}
-                              className="text-xs text-gray-600 hover:text-primary hover:bg-gray-100 transition-colors py-1.5 px-2 rounded-md"
-                            >
-                              {serviceName}
-                            </Link>
-                          );
-                        })}
+                      <div className="grid grid-cols-2 gap-x-8 gap-y-2">
+                        {activeCategory.services.map((service, index) => (
+                          <Link
+                            key={index}
+                            to={`${activeCategory.path}#${service.hash}`}
+                            onClick={handleMenuItemClick}
+                            className="text-xs text-gray-600 hover:text-[#14539a] hover:bg-gray-100 transition-colors py-1.5 px-2 rounded-md"
+                          >
+                            {service.name}
+                          </Link>
+                        ))}
                       </div>
                     )}
-                    <div className="mt-4 pt-3 border-t border-gray-200">
+                    <div className="mt-4 pt-4 border-t border-gray-100">
                       <Link
                         to={activeCategory.path}
-                        className="inline-flex items-center text-sm font-medium text-primary hover:text-primary/80 transition-colors"
+                        onClick={handleMenuItemClick}
+                        className="text-sm font-semibold text-[#14539a] hover:underline flex items-center gap-1"
                       >
-                        View all services
-                        <ChevronRight className="h-4 w-4 ml-1" />
+                        Explore all {activeCategory.name} <ChevronRight className="h-4 w-4" />
                       </Link>
                     </div>
                   </div>
                 </div>
               </NavigationMenuContent>
             </NavigationMenuItem>
-
+            
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="text-black hover:text-primary bg-transparent">
+              <NavigationMenuTrigger className="text-black hover:text-[#14539a] bg-transparent">
                 Industries We Serve
               </NavigationMenuTrigger>
-              <NavigationMenuContent className="bg-white text-black">
-                <div className="grid gap-3 p-4 w-[280px]">
-                  <NavigationMenuLink asChild>
-                    <Link
-                      to="/industries#it-software"
-                      className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100"
-                    >
-                      <div className="text-sm font-medium leading-none">
-                        IT & Software
-                      </div>
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link
-                      to="/industries#manufacturing"
-                      className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100"
-                    >
-                      <div className="text-sm font-medium leading-none">
-                        Manufacturing
-                      </div>
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link
-                      to="/industries#healthcare"
-                      className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100"
-                    >
-                      <div className="text-sm font-medium leading-none">
-                        Healthcare
-                      </div>
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link
-                      to="/industries#finance"
-                      className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100"
-                    >
-                      <div className="text-sm font-medium leading-none">
-                        Finance
-                      </div>
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link
-                      to="/industries#education"
-                      className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100"
-                    >
-                      <div className="text-sm font-medium leading-none">
-                        Education
-                      </div>
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link
-                      to="/industries#ecommerce"
-                      className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100"
-                    >
-                      <div className="text-sm font-medium leading-none">
-                        Ecommerce
-                      </div>
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link
-                      to="/industries#logistics"
-                      className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100"
-                    >
-                      <div className="text-sm font-medium leading-none">
-                        Logistics
-                      </div>
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link
-                      to="/industries#smes-corporates"
-                      className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100"
-                    >
-                      <div className="text-sm font-medium leading-none">
-                        SMEs & Corporates
-                      </div>
-                    </Link>
-                  </NavigationMenuLink>
+              <NavigationMenuContent>
+                <div className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] bg-white text-black">
+                  {[
+                    { id: "manufacturing", name: "Manufacturing" },
+                    { id: "healthcare", name: "Healthcare" },
+                    { id: "finance", name: "Finance" },
+                    { id: "retail", name: "Retail" },
+                    { id: "education", name: "Education" },
+                    { id: "technology", name: "Technology" },
+                  ].map((industry) => (
+                    <NavigationMenuLink asChild key={industry.id}>
+                      <Link
+                        to={`/industries#${industry.id}`}
+                        onClick={handleMenuItemClick}
+                        className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 hover:text-[#14539a]"
+                      >
+                        <div className="text-sm font-medium leading-none">{industry.name}</div>
+                      </Link>
+                    </NavigationMenuLink>
+                  ))}
                 </div>
               </NavigationMenuContent>
             </NavigationMenuItem>
 
+            <NavigationMenuItem>
+              <NavigationMenuLink asChild>
+                <Link
+                  to="/resources"
+                  onClick={handleResourcesClick}
+                  className="text-black hover:text-[#14539a] transition-colors text-sm font-medium"
+                >
+                  Resources
+                </Link>
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            
             <div
               ref={aboutUsRef}
               className="relative"
@@ -690,7 +648,7 @@ const Header = () => {
               onMouseLeave={handleAboutUsMouseLeave}
             >
               <button
-                className={`group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none ${aboutUsOpen ? 'bg-accent/50 text-primary' : 'bg-transparent text-black hover:text-primary'}`}
+                className={`group inline-flex h-10 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-colors focus:outline-none ${aboutUsOpen ? 'bg-accent/50 text-[#14539a]' : 'bg-transparent text-black hover:text-[#14539a]'}`}
                 onClick={() => setAboutUsOpen(!aboutUsOpen)}
               >
                 About Us
@@ -704,7 +662,7 @@ const Header = () => {
                   <div className="grid gap-3 p-4">
                     <Link
                       to="/about"
-                      className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100"
+                      className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 hover:text-[#14539a]"
                       onClick={() => setAboutUsOpen(false)}
                     >
                       <div className="text-sm font-medium leading-none">
@@ -713,7 +671,7 @@ const Header = () => {
                     </Link>
                     <Link
                       to="/leadership"
-                      className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100"
+                      className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 hover:text-[#14539a]"
                       onClick={() => setAboutUsOpen(false)}
                     >
                       <div className="text-sm font-medium leading-none">
@@ -722,69 +680,17 @@ const Header = () => {
                     </Link>
                     <Link
                       to="/careers"
-                      className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100"
+                      className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100 hover:text-[#14539a]"
                       onClick={() => setAboutUsOpen(false)}
                     >
                       <div className="text-sm font-medium leading-none">
                         Job Opportunities
                       </div>
                     </Link>
-                    <Link
-                      to="/life-at-cybaemtech"
-                      className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100"
-                      onClick={() => setAboutUsOpen(false)}
-                    >
-                      <div className="text-sm font-medium leading-none">
-                        Life at CybaemTech
-                      </div>
-                    </Link>
-                    <a
-                      href="https://skilltonitedu.com/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block select-none rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-gray-100"
-                      onClick={() => setAboutUsOpen(false)}
-                    >
-                      <div className="text-sm font-medium leading-none">
-                        Train with CybaemTech
-                      </div>
-                    </a>
                   </div>
                 </div>
               )}
             </div>
-
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
-                <Link
-                  to="/resources"
-                  onClick={handleResourcesClick}
-                  className="text-black hover:text-primary transition-colors text-sm font-medium"
-                >
-                  Resources
-                </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
-                <a
-                  href="https://cybaemtech.com/offers/"
-                  onClick={handleMenuItemClick}
-                  className="flex items-center gap-2 px-4 py-2 rounded-full border-2 border-orange-400 bg-orange-50 hover:bg-orange-100 transition-all hover:shadow-md"
-                >
-                  <svg width="20" height="15" viewBox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg" className="flex-shrink-0">
-                    <rect width="20" height="5" fill="#FF9933"/>
-                    <rect y="5" width="20" height="5" fill="#FFFFFF"/>
-                    <rect y="10" width="20" height="5" fill="#138808"/>
-                    <circle cx="10" cy="7.5" r="2" stroke="#000080" strokeWidth="0.3" fill="none"/>
-                    <line x1="10" y1="5.5" x2="10" y2="9.5" stroke="#000080" strokeWidth="0.2"/>
-                    <line x1="8" y1="7.5" x2="12" y2="7.5" stroke="#000080" strokeWidth="0.2"/>
-                  </svg>
-                  <span className="text-sm font-bold text-[#FF6B35]">Republic Offer</span>
-                </a>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
 
@@ -794,7 +700,7 @@ const Header = () => {
             variant="default"
             size="sm"
             asChild
-            className="text-sm font-medium touch-target bg-primary hover:bg-primary/90 text-white px-5 py-2 shadow-lg"
+            className="text-sm font-medium touch-target bg-[#14539a] hover:bg-[#14539a]/90 text-white px-5 py-2 shadow-lg"
           >
             <Link to="/contact">Contact</Link>
           </Button>

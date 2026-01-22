@@ -251,7 +251,7 @@ const MobileNavigation = ({
                           className="w-full flex justify-between px-7 py-2.5 text-left text-gray-300 hover:text-white hover:bg-white/5 transition-colors no-underline touch-target"
                         >
                           <div className="flex items-center gap-2">
-                            <category.icon className="h-4 w-4 text-primary/70" />
+                            <category.icon className="h-4 w-4 text-[#14539a]/70" />
                             <span className="text-sm">{category.name}</span>
                           </div>
                           <ChevronDown className={`h-3 w-3 transition-transform ${openServiceCategory === category.id ? 'rotate-180' : ''}`} />
@@ -267,7 +267,7 @@ const MobileNavigation = ({
                             key={index}
                             to={`${category.path}${serviceHash}`}
                             onClick={handleMenuItemClick}
-                            className="block px-10 py-2 text-xs text-gray-400 hover:text-primary hover:bg-white/5 transition-colors touch-target"
+                            className="block px-10 py-2 text-xs text-gray-400 hover:text-[#14539a] hover:bg-white/5 transition-colors touch-target"
                           >
                             {serviceName}
                           </Link>
@@ -276,7 +276,7 @@ const MobileNavigation = ({
                       <Link 
                         to={category.path} 
                         onClick={onToggle}
-                        className="block px-10 py-2 text-xs text-primary font-medium hover:bg-white/5 transition-colors touch-target"
+                        className="block px-10 py-2 text-xs text-[#14539a] font-medium hover:bg-white/5 transition-colors touch-target"
                       >
                         View All Services →
                       </Link>
@@ -317,7 +317,7 @@ const MobileNavigation = ({
             <Link 
               to="/product" 
               onClick={handleMenuItemClick} 
-              className={`block px-5 py-3 font-medium transition-colors touch-target ${isActive("/product") ? 'text-primary bg-primary/10 border-r-2 border-primary' : 'text-white hover:bg-white/10'}`}
+              className={`block px-5 py-3 font-medium transition-colors touch-target ${isActive("/product") ? 'text-[#14539a] bg-[#14539a]/10 border-r-2 border-[#14539a]' : 'text-white hover:bg-white/10'}`}
             >
               Product
             </Link>
@@ -349,7 +349,7 @@ const MobileNavigation = ({
                       <Link 
                         to={link.path} 
                         onClick={onToggle} 
-                        className={`block px-7 py-2 text-sm transition-colors touch-target ${isActive(link.path) ? 'text-primary bg-primary/10 border-r-2 border-primary' : 'text-gray-300 hover:text-white hover:bg-white/5'}`}
+                        className={`block px-7 py-2 text-sm transition-colors touch-target ${isActive(link.path) ? 'text-[#14539a] bg-[#14539a]/10 border-r-2 border-[#14539a]' : 'text-gray-300 hover:text-white hover:bg-white/5'}`}
                       >
                         {link.label}
                       </Link>
@@ -365,7 +365,7 @@ const MobileNavigation = ({
             <Link 
               to="/resources" 
               onClick={handleResourcesClick} 
-              className={`block px-5 py-3 font-medium transition-colors touch-target ${isActive("/resources") ? 'text-primary bg-primary/10 border-r-2 border-primary' : 'text-white hover:bg-white/10'}`}
+              className={`block px-5 py-3 font-medium transition-colors touch-target ${isActive("/resources") ? 'text-[#14539a] bg-[#14539a]/10 border-r-2 border-[#14539a]' : 'text-white hover:bg-white/10'}`}
             >
               Resources
             </Link>
@@ -374,7 +374,7 @@ const MobileNavigation = ({
           {/* Mobile-specific contact button only */}
           <div className="px-6 pt-6 border-t border-gray-800 mt-4 flex flex-col gap-3">
             <Link to="/contact?source=mobile-menu" onClick={onToggle}>
-              <Button className="w-full bg-primary hover:bg-primary/90 text-white touch-target">
+              <Button className="w-full bg-[#14539a] hover:bg-[#14539a]/90 text-white touch-target">
                 Contact
               </Button>
             </Link>
