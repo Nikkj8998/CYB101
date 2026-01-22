@@ -386,7 +386,7 @@ const Header = () => {
             variant="default"
             size="sm"
             asChild
-            className="text-xs md:text-sm font-medium bg-primary hover:bg-primary/90 text-white px-3 py-2"
+            className="text-xs md:text-sm font-medium bg-[#14539a] hover:bg-[#14539a]/90 text-white px-3 py-2"
           >
             <Link to="/contact">Contact</Link>
           </Button>
@@ -395,7 +395,7 @@ const Header = () => {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Open menu"
           >
-            <Menu className="h-6 w-6 md:h-7 md:w-7 text-primary" />
+            <Menu className="h-6 w-6 md:h-7 md:w-7 text-[#14539a]" />
           </button>
         </div>
 
@@ -407,7 +407,7 @@ const Header = () => {
                 <Link
                   to="/product"
                   onClick={handleMenuItemClick}
-                  className="text-black hover:text-primary transition-colors text-sm font-medium"
+                  className="text-black hover:text-[#14539a] transition-colors text-sm font-medium"
                 >
                   Product
                 </Link>
@@ -415,7 +415,7 @@ const Header = () => {
             </NavigationMenuItem>
             
             <NavigationMenuItem>
-              <NavigationMenuTrigger className="text-black hover:text-primary bg-transparent">
+              <NavigationMenuTrigger className="text-black hover:text-[#14539a] bg-transparent">
                 Services
               </NavigationMenuTrigger>
               <NavigationMenuContent className="bg-white text-black">
@@ -433,12 +433,12 @@ const Header = () => {
                           onClick={handleMenuItemClick}
                           onMouseEnter={() => setActiveServiceCategory(category.id)}
                           className={`flex items-center justify-between px-3 py-2 rounded-md cursor-pointer transition-colors no-underline ${activeServiceCategory === category.id
-                              ? 'bg-primary text-white'
+                              ? 'bg-[#14539a] text-white'
                               : 'text-gray-700 hover:bg-gray-100'
                             }`}
                         >
                           <div className="flex items-center gap-2.5">
-                            <category.icon className={`h-4 w-4 ${activeServiceCategory === category.id ? 'text-white' : 'text-gray-500'}`} />
+                            <category.icon className={`h-4 w-4 ${activeServiceCategory === category.id ? 'text-white' : 'text-[#14539a]'}`} />
                             <span className="text-sm font-medium">{category.name}</span>
                           </div>
                           <ChevronRight className={`h-4 w-4 ${activeServiceCategory === category.id ? 'text-white' : 'text-gray-400'}`} />
@@ -449,7 +449,7 @@ const Header = () => {
 
                   {/* Right Column - Sub-services */}
                   <div className="flex-1 p-5">
-                    <h3 className="text-base font-semibold text-primary mb-3">
+                    <h3 className="text-base font-semibold text-[#14539a] mb-3">
                       {activeCategory.name}
                     </h3>
                     {activeCategory.threeColumnServices ? (
@@ -469,7 +469,7 @@ const Header = () => {
                                   key={index}
                                   to={`${activeCategory.path}#${serviceHash}`}
                                   onClick={handleMenuItemClick}
-                                  className="block text-xs text-gray-600 hover:text-primary hover:bg-gray-100 transition-colors py-1.5 px-2 rounded-md"
+                                  className="block text-xs text-gray-600 hover:text-[#14539a] hover:bg-gray-100 transition-colors py-1.5 px-2 rounded-md"
                                 >
                                   {serviceName}
                                 </Link>
@@ -492,7 +492,7 @@ const Header = () => {
                                   key={index}
                                   to={`${activeCategory.path}#${serviceHash}`}
                                   onClick={handleMenuItemClick}
-                                  className="block text-xs text-gray-600 hover:text-primary hover:bg-gray-100 transition-colors py-1.5 px-2 rounded-md"
+                                  className="block text-xs text-gray-600 hover:text-[#14539a] hover:bg-gray-100 transition-colors py-1.5 px-2 rounded-md"
                                 >
                                   {serviceName}
                                 </Link>
@@ -515,7 +515,7 @@ const Header = () => {
                                   key={index}
                                   to={`${activeCategory.path}#${serviceHash}`}
                                   onClick={handleMenuItemClick}
-                                  className="block text-xs text-gray-600 hover:text-primary hover:bg-gray-100 transition-colors py-1.5 px-2 rounded-md"
+                                  className="block text-xs text-gray-600 hover:text-[#14539a] hover:bg-gray-100 transition-colors py-1.5 px-2 rounded-md"
                                 >
                                   {serviceName}
                                 </Link>
